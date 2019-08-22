@@ -3,6 +3,8 @@
 ## Recent Update
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
 * `2019.08.15` This repos is formally released. Any advice and error reports are sincerely welcome.
+* `2019.08.22` face_detection: latency evaluation on TX2 is added.
+
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
 LFFD considerably balances both accuracy and latency, resulting in small model size, fast inference speed while achieving excellent accuracy. In
@@ -16,6 +18,7 @@ less than 5, is appropriate to apply our framework for detection.
 Several practical advantages:
 1. large scale coverage, and easy to extend to larger scales by adding more layers without much latency gain.
 2. detect small objects (as small as 10 pixels) in images with extremely large resolution (8K or even larger) in only one inference.
+3. easy backbone with very common operators makes it easy to deploy anywhere.
 
 ## Accuracy and Latency
 We train LFFD on train set of WIDER FACE benchmark. All methods are evaluated on val/test sets under the SIO schema (please

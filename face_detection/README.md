@@ -3,7 +3,8 @@ This subdir includes face detection related codes. Some descriptions has
 been presented in repo README.md. 
 
 ### Recent Update
-* `2019.8.1` model v1 (in the paper) and v2 are added.
+* `2019.08.01` model v1 (in the paper) and v2 are added.
+* `2019.08.22` latency evaluation on TX2 is added.
 
 ### Brief Introduction to Model Version
 * v1 - refer to the paper for details
@@ -13,10 +14,13 @@ the backbone is modified for faster inference. Refer to `./symbol_farm/symbol_st
 ### Accuracy
 All evaluations are conducted under the SIO schema (please refer to the paper for details).
 
+**RetinaFace-mnet** is short for RetinaFace-MobileNet-0.25. (The excellent work from [insightface](https://github.com/deepinsight/insightface))
+
 * Results on val set of WIDER FACE:
 
 Model Version|Easy Set|Medium Set|Hard Set
 ------|--------|----------|--------
+RetinaFace-mnet|-|-|-
 v1|0.910|0.881|0.780
 v2|0.837|0.835|0.729
 
@@ -27,6 +31,7 @@ In fact, v2 is enough for practical use.
 
 Model Version|Disc ROC curves score
 ------|--------
+RetinaFace-mnet|-
 v1|0.973
 v2|0.972
 
@@ -39,12 +44,16 @@ Model Version|160×140|320×240|640×480|1280×720
 v1|12.94ms(77.26FPS)|33.66ms(29.70FPS)|113.88ms(8.78FPS)|326.91ms(3.06FPS)
 v2|10.48ms(95.39FPS)|23.28ms(42.96FPS)|77.56ms(12.89FPS)|222.30ms(4.50FPS)
 
-* Platform info: NVIDIA Jetson TX2, CUDA xx.x, CUDNN x.x.x, TensorRT x.x.x (coming soon)
+> CAUTION: The latency may vary even in the same setting.
+
+* Platform info: NVIDIA Jetson TX2, CUDA 10.0, CUDNN 7.5.0, TensorRT 5.1.6 (power mode: MAXN)
 
 Model Version|160×140|320×240|640×480|1280×720|1920×1080
 -------------|-------|-------|-------|--------|---------
-v1|-|-|-|-|-
-v2|-|-|-|-|-
+v1|6.12ms(163.47FPS)|13.50ms(74.06FPS)|46.65ms(21.44FPS)|131.38ms(7.61FPS)|291.24ms(3.43FPS)
+v2|4.40ms(227.39FPS)|9.15ms(109.31FPS)|31.46ms(31.79FPS)|89.22ms(11.21FPS)|198.79ms(5.03FPS)
+
+> CAUTION: The latency may vary even in the same setting.
 
 * Platform info: NVIDIA RTX 2080TI, CUDA 10.0, CUDNN 7.4.2, TensorRT 5.1.5.0
 
@@ -92,6 +101,9 @@ Model Version|160×140|320×240|640×480|1280×720|1920×1080
 -------------|-------|-------|-------|--------|---------
 v1|-|-|-|-|-
 v2|-|-|-|-|-
+
+### Inference Latency vs RetinaFace-MobileNet-0.25
+TBD
 
 ### User Instructions
 First, we introduce the functionality of each sub directory.
