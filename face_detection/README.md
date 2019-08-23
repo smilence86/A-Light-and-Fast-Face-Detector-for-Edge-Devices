@@ -12,9 +12,7 @@ been presented in repo README.md.
 the backbone is modified for faster inference. Refer to `./symbol_farm/symbol_structures.xlsx` for details.
 
 ### Accuracy
-All evaluations are conducted under the SIO schema (please refer to the paper for details).
-
-**RetinaFace-mnet** is short for RetinaFace-MobileNet-0.25. (The excellent work from [insightface](https://github.com/deepinsight/insightface))
+All accuracy evaluations are conducted under the **SIO** schema (please refer to the paper for details).
 
 * Results on val set of WIDER FACE:
 
@@ -24,8 +22,10 @@ RetinaFace-mnet|-|-|-
 v1|0.910|0.881|0.780
 v2|0.837|0.835|0.729
 
-> due to giving up detecting large faces, the accuracy of v2 decreases obviously compared to v1.
+> * due to giving up detecting large faces, the accuracy of v2 decreases obviously compared to v1.
 In fact, v2 is enough for practical use.
+> * **RetinaFace-mnet** is short for RetinaFace-MobileNet-0.25. (The excellent work from [insightface](https://github.com/deepinsight/insightface))
+
 
 * Results on FDDB:
 
@@ -155,3 +155,8 @@ images cropped from the training images are also added. We provide three ways to
 
 After you download the data, you can put it anywhere. Remember to set `param_trainset_pickle_file_path` variable in the configuration file. (we 
 usually put the data into the folder: `./data_provider_farm/data_folder/`)
+
+### Future Directions
+* better training strategies, like pre-training, better optimizer, loss branch balance...
+* much lighter backbone. MobileNet and ShuffleNet series are classic choices, maybe they are not the best. We will explore something new and touch the limit of the speed.
+* study the best match between RF and scales, which may produce more efficient backbones.
