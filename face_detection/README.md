@@ -106,6 +106,9 @@ v2|-|-|-|-|-
 TBD
 
 ### User Instructions
+**If you just want to experience the trained model, head to the script `./accuracy_evaluation/predict.py` and 
+you can test your own images easily.**
+
 First, we introduce the functionality of each sub directory.
 * [accuracy_evaluation](accuracy_evaluation). This folder contains the evaluation code for WIDERFACE and FDDB.
 The code only produces formatted results files. Please use the official code for metric calculation. 
@@ -122,7 +125,7 @@ please refer to [README.md](deploy_tensorrt/README.md).
 * [config_farm](config_farm). This folder contains the configurations of all model versions. The training is started by running the
 corresponding config python script.
 
-Second, we present a common procedure for running the code (taking v1 as an example).
+Second, we present a common procedure for running the code for training (taking v1 as an example).
 
 1. prepare symbol net `symbol_farm/symbol_10_560_25L_8scales_v1.py`
 2. (optional) check the latency by using `inference_speed_evaluation/inference_speed_eval.py`

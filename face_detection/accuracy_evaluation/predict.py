@@ -224,53 +224,16 @@ class Predict(object):
             return bbox_collection_numpy, infer_time
 
 
-def run_prediction_pickle():
-    from config_farm import configuration_10_320_20L_5scales_v2 as cfg
-    import mxnet
-
-    data_pickle_file_path = './data_provider_farm/data_folder/train_data_gt_9.pkl'
-    from data_provider_farm.pickle_provider import PickleProvider
-    pickle_provider = PickleProvider(data_pickle_file_path)
-    positive_index = pickle_provider.positive_index
-    negative_index = pickle_provider.negative_index
-    all_index = positive_index
-    print("num of positive: %d\nnum of negative: %d" % (len(positive_index), len(negative_index)))
-    # import random
-    # random.shuffle(all_index)
-
-    symbol_file_path = './symbol_farm/symbol_10_320_20L_5scales_v2_deploy.json'
-    model_file_path = './saved_model/configuration_10_320_20L_5scales_v2_2019-08-04-23-36-01/train_10_320_20L_5scales_v2_iter_1200000.params'
-    my_predictor = Predict(mxnet=mxnet,
-                           symbol_file_path=symbol_file_path,
-                           model_file_path=model_file_path,
-                           ctx=mxnet.gpu(0),
-                           receptive_field_list=cfg.param_receptive_field_list,
-                           receptive_field_stride=cfg.param_receptive_field_stride,
-                           bbox_small_list=cfg.param_bbox_small_list,
-                           bbox_large_list=cfg.param_bbox_large_list,
-                           receptive_field_center_start=cfg.param_receptive_field_center_start,
-                           num_output_scales=cfg.param_num_output_scales)
-
-    for idx in all_index:
-        im, _, bboxes_gt = pickle_provider.read_by_index(idx)
-
-        bboxes = my_predictor.predict(im, resize_scale=1, score_threshold=0.4, top_k=10000, NMS_threshold=0.4)
-        for bbox in bboxes:
-            cv2.rectangle(im, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 255, 0), 1)
-
-        cv2.imshow('im', im)
-        cv2.waitKey()
-
-
 def run_prediction_folder():
-    from config_farm import configuration_10_320_20L_5scales_v2 as cfg
+    sys.path.append('..')
+    from config_farm import configuration_10_560_25L_8scales_v1 as cfg
     import mxnet
 
-    debug_folder = '/home/heyonghao/projects/tocreate_LFFD_ICCV2019_FaceDetector/debug_images_from_www'
+    debug_folder = '' # fill the folder that contains images
     file_name_list = [file_name for file_name in os.listdir(debug_folder) if file_name.lower().endswith('jpg')]
 
-    symbol_file_path = '../symbol_farm/symbol_10_320_20L_5scales_v2_deploy.json'
-    model_file_path = '../saved_model/configuration_10_320_20L_5scales_v2_2019-08-04-23-36-01/train_10_320_20L_5scales_v2_iter_1800000.params'
+    symbol_file_path = '../symbol_farm/symbol_10_560_25L_8scales_v1_deploy.json'
+    model_file_path = '../saved_model/configuration_10_560_25L_8scales_v1/train_10_560_25L_8scales_v1_iter_1400000.params'
     my_predictor = Predict(mxnet=mxnet,
                            symbol_file_path=symbol_file_path,
                            model_file_path=model_file_path,
@@ -285,7 +248,7 @@ def run_prediction_folder():
     for file_name in file_name_list:
         im = cv2.imread(os.path.join(debug_folder, file_name))
 
-        bboxes = my_predictor.predict(im, resize_scale=1, score_threshold=0.6, top_k=10000, NMS_threshold=0.4, NMS_flag=True, skip_scale_branch_list=[])
+        bboxes = my_predictor.predict(im, resize_scale=1, score_threshold=0.3, top_k=10000, NMS_threshold=0.3, NMS_flag=True, skip_scale_branch_list=[])
         for bbox in bboxes:
             cv2.rectangle(im, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
 
