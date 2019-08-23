@@ -15,3 +15,5 @@ Refer to [inference_speed_evaluation](../inference_speed_evaluation) for details
 So you can rewrite the code according to the python code structure.
 In the future, we will provide C++ version.
 
+### NVIDIA Jetson NANO&TX2 Deployment Instructions
+TBD

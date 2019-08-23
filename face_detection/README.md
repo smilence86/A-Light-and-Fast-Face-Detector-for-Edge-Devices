@@ -160,3 +160,16 @@ usually put the data into the folder: `./data_provider_farm/data_folder/`)
 * better training strategies, like pre-training, better optimizer, loss branch balance...
 * much lighter backbone. MobileNet and ShuffleNet series are classic choices, maybe they are not the best. We will explore something new and touch the limit of the speed.
 * study the best match between RF and scales, which may produce more efficient backbones.
+
+### Qualitative Results
+(the following results are obtained by v1 with only one inference)
+
+![image](qualitative_results/v1_qualitative_1.jpg)
+
+![image](qualitative_results/v1_qualitative_2.jpg)
+
+![image](qualitative_results/v1_qualitative_3.jpg)
+
+![image](qualitative_results/v1_qualitative_4.jpg)
+
+![image](qualitative_results/v1_qualitative_5.jpg)
