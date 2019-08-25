@@ -188,16 +188,17 @@ class Multithread_DataIter_for_CrossEntropy:
                 if self.enable_vertical_flip and random.random() > 0.5:
                     im_input = Augmentor.flip(im_input, 'v')
 
-                if self.enable_random_brightness and random.random() > 0.5:
-                    im_input = Augmentor.brightness(im_input, **self.brightness_params)
-                if self.enable_random_saturation and random.random() > 0.5:
-                    im_input = Augmentor.saturation(im_input, **self.saturation_params)
-                if self.enable_random_contrast and random.random() > 0.5:
-                    im_input = Augmentor.contrast(im_input, **self.contrast_params)
-                if self.enable_blur and random.random() > 0.5:
-                    kernel_size = random.choice(self.blur_kernel_size_list)
-                    self.blur_params['kernel_size'] = kernel_size
-                    im_input = Augmentor.blur(im_input, **self.blur_params)
+                if random.random() > 0.5:
+                    if self.enable_random_brightness and random.random() > 0.5:
+                        im_input = Augmentor.brightness(im_input, **self.brightness_params)
+                    if self.enable_random_saturation and random.random() > 0.5:
+                        im_input = Augmentor.saturation(im_input, **self.saturation_params)
+                    if self.enable_random_contrast and random.random() > 0.5:
+                        im_input = Augmentor.contrast(im_input, **self.contrast_params)
+                    if self.enable_blur and random.random() > 0.5:
+                        kernel_size = random.choice(self.blur_kernel_size_list)
+                        self.blur_params['kernel_size'] = kernel_size
+                        im_input = Augmentor.blur(im_input, **self.blur_params)
 
                 # display for debug-------------------------------------------------
                 # cv2.imshow('im', im_pad.astype(dtype=numpy.uint8))
@@ -315,16 +316,17 @@ class Multithread_DataIter_for_CrossEntropy:
                 im_input[crop_top_pad:crop_top_pad + im.shape[0], crop_left_pad:crop_left_pad + im.shape[1], :] = im
 
                 # image augmentation
-                if self.enable_random_brightness and random.random() > 0.5:
-                    im_input = Augmentor.brightness(im_input, **self.brightness_params)
-                if self.enable_random_saturation and random.random() > 0.5:
-                    im_input = Augmentor.saturation(im_input, **self.saturation_params)
-                if self.enable_random_contrast and random.random() > 0.5:
-                    im_input = Augmentor.contrast(im_input, **self.contrast_params)
-                if self.enable_blur and random.random() > 0.5:
-                    kernel_size = random.choice(self.blur_kernel_size_list)
-                    self.blur_params['kernel_size'] = kernel_size
-                    im_input = Augmentor.blur(im_input, **self.blur_params)
+                if random.random() > 0.5:
+                    if self.enable_random_brightness and random.random() > 0.5:
+                        im_input = Augmentor.brightness(im_input, **self.brightness_params)
+                    if self.enable_random_saturation and random.random() > 0.5:
+                        im_input = Augmentor.saturation(im_input, **self.saturation_params)
+                    if self.enable_random_contrast and random.random() > 0.5:
+                        im_input = Augmentor.contrast(im_input, **self.contrast_params)
+                    if self.enable_blur and random.random() > 0.5:
+                        kernel_size = random.choice(self.blur_kernel_size_list)
+                        self.blur_params['kernel_size'] = kernel_size
+                        im_input = Augmentor.blur(im_input, **self.blur_params)
 
                 # display for debug-------------------------------------------------
                 # im_show = im_input.copy()

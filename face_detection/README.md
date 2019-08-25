@@ -5,6 +5,7 @@ been presented in repo README.md.
 ### Recent Update
 * `2019.08.01` model v1 (in the paper) and v2 are added.
 * `2019.08.22` latency evaluation on TX2 is added.
+* `2019.08.25` RetinaFace-MobileNet-0.25 related content is added (both accuracy and latency).
 
 ### Brief Introduction to Model Version
 * v1 - refer to the paper for details
@@ -18,7 +19,7 @@ All accuracy evaluations are conducted under the **SIO** schema (please refer to
 
 Model Version|Easy Set|Medium Set|Hard Set
 ------|--------|----------|--------
-RetinaFace-mnet|-|-|-
+RetinaFace-mnet|0.896|0.871|0.681
 v1|0.910|0.881|0.780
 v2|0.837|0.835|0.729
 
@@ -31,7 +32,7 @@ In fact, v2 is enough for practical use.
 
 Model Version|Disc ROC curves score
 ------|--------
-RetinaFace-mnet|-
+RetinaFace-mnet|0.960
 v1|0.973
 v2|0.972
 
@@ -103,7 +104,27 @@ v1|-|-|-|-|-
 v2|-|-|-|-|-
 
 ### Inference Latency vs RetinaFace-MobileNet-0.25
-TBD
+The UpSampling operator is not supported by mx2onnx currently, so it is not so easy to convert to onnx format for TensorRT evaluation.
+We use MXNet with CUDNN instead (this also can reflect the latency trend).
+
+* Latency on NVIDIA RTX 2080TI (MXNet+CUDA 10.0+CUDNN7.4.2):
+
+Resolution->|640×480|1280×720|1920×1080|3840×2160|7680×4320
+------------|-------|--------|---------|---------|---------
+RetinaFace-mnet|5.40ms(185.26FPS)|6.31ms(158.60FPS)|10.26ms(97.47FPS)|29.29ms(34.14FPS)|118.42ms(8.44FPS)
+v1|7.24ms(138.16FPS)|14.58ms(68.57FPS)|28.36ms(35.26FPS)|100.18ms(9.98FPS)|380.62ms(2.63FPS)
+v2|5.04ms(198.59FPS)|9.79ms(102.14FPS)|18.17ms(55.04FPS)|65.86ms(15.18FPS)|245.16ms(4.08FPS)
+
+* Latency on NVIDIA GTX 1060(laptop) (MXNet+CUDA 10.0+CUDNN7.4.2):
+
+Resolution->|640×480|1280×720|1920×1080|3840×2160
+------------|-------|--------|---------|---------
+RetinaFace-mnet|4.90ms(204.17FPS)|10.85ms(92.19FPS)|22.44ms(44.57FPS)|79.48.29ms(12.58FPS)
+v1|16.47ms(60.73FPS)|45.43ms(22.01FPS)|100.23ms(9.98FPS)|399.50ms(2.50FPS)
+v2|10.99ms(90.97FPS)|29.45ms(33.96FPS)|63.64ms(15.71FPS)|253.89ms(3.94FPS)
+
+**RetinaFace-mnet** uses MobileNet v1 as pre-trained backbone, showing both excellent accuracy and low latency. In the future, we will
+also explore much lighter backbone.
 
 ### User Instructions
 **If you just want to experience the trained model, head to the script `./accuracy_evaluation/predict.py` and 

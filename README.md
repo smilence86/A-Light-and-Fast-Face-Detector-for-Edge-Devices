@@ -4,6 +4,7 @@
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
 * `2019.08.15` This repos is formally released. Any advice and error reports are sincerely welcome.
 * `2019.08.22` face_detection: latency evaluation on TX2 is added.
+* `2019.08.25` face_detection: RetinaFace-MobileNet-0.25 related content is added (both accuracy and latency).
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
