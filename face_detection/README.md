@@ -123,8 +123,12 @@ RetinaFace-mnet|4.90ms(204.17FPS)|10.85ms(92.19FPS)|22.44ms(44.57FPS)|79.48.29ms
 v1|16.47ms(60.73FPS)|45.43ms(22.01FPS)|100.23ms(9.98FPS)|399.50ms(2.50FPS)
 v2|10.99ms(90.97FPS)|29.45ms(33.96FPS)|63.64ms(15.71FPS)|253.89ms(3.94FPS)
 
-**RetinaFace-mnet** uses MobileNet v1 as pre-trained backbone, showing both excellent accuracy and low latency. In the future, we will
+> **RetinaFace-mnet** uses MobileNet v1 as pre-trained backbone, showing both excellent accuracy and low latency. In the future, we will
 also explore much lighter backbone.
+
+> In the backbone, RetinaFace-mnet downsamples the input 8x before the first branch, whereas v2 downsamples 4x only. This is the main cause
+of the latency gap between RetinaFace-mnet and v2. Correspondingly, RetinaFace-mnet losses the ability to detect tiny objects (the accuracy on 
+hard set of WIDER FACE is relatively lower).
 
 ### User Instructions
 **If you just want to experience the trained model, head to the script `./accuracy_evaluation/predict.py` and 
