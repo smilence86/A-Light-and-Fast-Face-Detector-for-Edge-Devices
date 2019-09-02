@@ -4,12 +4,14 @@
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
 * `2019.08.15` This repos is formally released. Any advice and error reports are sincerely welcome.
 * `2019.08.22` face_detection: latency evaluation on TX2 is added.
-* `2019.08.25` face_detection: RetinaFace-MobileNet-0.25 related content is added (both accuracy and latency).
+* `2019.08.25` face_detection: RetinaFace-MobileNet-0.25 is added for comparison (both accuracy and latency).
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
-LFFD considerably balances both accuracy and latency, resulting in small model size, fast inference speed while achieving excellent accuracy. In
-practical, we have deployed it in cloud and edge devices (like NVIDIA Jetson series and ARM-based embedding system). The comprehensive performance
+LFFD considerably balances both accuracy and latency, resulting in small model size, fast inference speed while achieving excellent accuracy.
+**Understanding the essence of receptive field makes detection networks interpretable.**
+  
+In practical, we have deployed it in cloud and edge devices (like NVIDIA Jetson series and ARM-based embedding system). The comprehensive performance
 of LFFD is robust enough to support our applications.
 
 In fact, our method is **_a general detection framework that applicable to one class detection_**, such as face detection, pedestrian detection, 
@@ -146,6 +148,7 @@ year={2019}
 - [ ] pedestrian detection
 - [ ] head detection
 - [ ] vehicle detection
+- [ ] license plate detection
 - [ ] PyTorch version
 
 ## Contact
