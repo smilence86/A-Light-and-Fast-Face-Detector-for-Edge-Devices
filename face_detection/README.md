@@ -104,7 +104,7 @@ v1|-|-|-|-|-
 v2|-|-|-|-|-
 
 ### Inference Latency vs RetinaFace-MobileNet-0.25
-The UpSampling operator is not supported by mx2onnx currently, so it is not so easy to convert to onnx format for TensorRT evaluation.
+The UpSampling operator in RetinaFace-mnet is not supported by mx2onnx currently, so it is not so easy to convert to onnx format for TensorRT evaluation.
 We use MXNet with CUDNN instead (this also can reflect the latency trend).
 
 * Latency on NVIDIA RTX 2080TI (MXNet+CUDA 10.0+CUDNN7.4.2):
