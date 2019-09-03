@@ -61,15 +61,50 @@ class Multithread_DataIter_for_CrossEntropy:
         # augmentation settings
         self.enable_horizon_flip = enable_horizon_flip
         self.enable_vertical_flip = enable_vertical_flip
+        self.pixel_augmentor_func_list = []
+
         self.enable_random_brightness = enable_random_brightness
         self.brightness_params = brightness_params
+        def brightness_augmentor(input_im):
+            if self.enable_random_brightness and random.random() > 0.5:
+                input_im = Augmentor.brightness(input_im, **self.brightness_params)
+                return input_im
+            else:
+                return input_im
+        self.pixel_augmentor_func_list.append(brightness_augmentor)
+
         self.enable_random_saturation = enable_random_saturation
         self.saturation_params = saturation_params
+        def saturation_augmentor(input_im):
+            if self.enable_random_saturation and random.random() > 0.5:
+                input_im = Augmentor.saturation(input_im, **self.saturation_params)
+                return input_im
+            else:
+                return input_im
+        self.pixel_augmentor_func_list.append(saturation_augmentor)
+
         self.enable_random_contrast = enable_random_contrast
         self.contrast_params = contrast_params
+        def contrast_augmentor(input_im):
+            if self.enable_random_contrast and random.random() > 0.5:
+                input_im = Augmentor.contrast(input_im, **self.contrast_params)
+                return input_im
+            else:
+                return input_im
+        self.pixel_augmentor_func_list.append(contrast_augmentor)
+
         self.enable_blur = enable_blur
         self.blur_params = blur_params
         self.blur_kernel_size_list = blur_kernel_size_list
+        def blur_augmentor(input_im):
+            if self.enable_blur and random.random() > 0.5:
+                kernel_size = random.choice(self.blur_kernel_size_list)
+                self.blur_params['kernel_size'] = kernel_size
+                input_im = Augmentor.blur(input_im, **self.blur_params)
+                return input_im
+            else:
+                return input_im
+        self.pixel_augmentor_func_list.append(blur_augmentor)
 
         self.batch_size = batch_size
         self.neg_image_ratio = neg_image_ratio
@@ -78,7 +113,6 @@ class Multithread_DataIter_for_CrossEntropy:
         self.num_image_channels = num_image_channels
         self.net_input_height = net_input_height
         self.net_input_width = net_input_width
-
 
         self.num_output_scales = num_output_scales
         self.receptive_field_list = receptive_field_list
@@ -189,16 +223,9 @@ class Multithread_DataIter_for_CrossEntropy:
                     im_input = Augmentor.flip(im_input, 'v')
 
                 if random.random() > 0.5:
-                    if self.enable_random_brightness and random.random() > 0.5:
-                        im_input = Augmentor.brightness(im_input, **self.brightness_params)
-                    if self.enable_random_saturation and random.random() > 0.5:
-                        im_input = Augmentor.saturation(im_input, **self.saturation_params)
-                    if self.enable_random_contrast and random.random() > 0.5:
-                        im_input = Augmentor.contrast(im_input, **self.contrast_params)
-                    if self.enable_blur and random.random() > 0.5:
-                        kernel_size = random.choice(self.blur_kernel_size_list)
-                        self.blur_params['kernel_size'] = kernel_size
-                        im_input = Augmentor.blur(im_input, **self.blur_params)
+                    random.shuffle(self.pixel_augmentor_func_list)
+                    for augmentor in self.pixel_augmentor_func_list:
+                        im_input = augmentor(im_input)
 
                 # display for debug-------------------------------------------------
                 # cv2.imshow('im', im_pad.astype(dtype=numpy.uint8))
@@ -318,16 +345,9 @@ class Multithread_DataIter_for_CrossEntropy:
 
                 # image augmentation
                 if random.random() > 0.5:
-                    if self.enable_random_brightness and random.random() > 0.5:
-                        im_input = Augmentor.brightness(im_input, **self.brightness_params)
-                    if self.enable_random_saturation and random.random() > 0.5:
-                        im_input = Augmentor.saturation(im_input, **self.saturation_params)
-                    if self.enable_random_contrast and random.random() > 0.5:
-                        im_input = Augmentor.contrast(im_input, **self.contrast_params)
-                    if self.enable_blur and random.random() > 0.5:
-                        kernel_size = random.choice(self.blur_kernel_size_list)
-                        self.blur_params['kernel_size'] = kernel_size
-                        im_input = Augmentor.blur(im_input, **self.blur_params)
+                    random.shuffle(self.pixel_augmentor_func_list)
+                    for augmentor in self.pixel_augmentor_func_list:
+                        im_input = augmentor(im_input)
 
                 # display for debug-------------------------------------------------
                 # im_show = im_input.copy()

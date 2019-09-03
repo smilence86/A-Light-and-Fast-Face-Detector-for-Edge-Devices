@@ -5,7 +5,8 @@ been presented in repo README.md.
 ### Recent Update
 * `2019.08.01` model v1 (in the paper) and v2 are added.
 * `2019.08.22` latency evaluation on TX2 is added.
-* `2019.08.25` RetinaFace-MobileNet-0.25 related content is added (both accuracy and latency).
+* `2019.08.25` RetinaFace-MobileNet-0.25 is added for comparison (both accuracy and latency).
+* `2019.09.03` a better augmentation procedure replaces the old one in dataiter.
 
 ### Brief Introduction to Model Version
 * v1 - refer to the paper for details
