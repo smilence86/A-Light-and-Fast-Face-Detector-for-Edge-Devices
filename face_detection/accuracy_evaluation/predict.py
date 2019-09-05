@@ -299,7 +299,10 @@ def run_prediction_camera():
         image = frame.array
 
         # im = cv2.imread(os.path.join(debug_folder, file_name))
+        tic = time.time()
         bboxes = my_predictor.predict(image, resize_scale=1, score_threshold=0.3, top_k=10000, NMS_threshold=0.3, NMS_flag=True, skip_scale_branch_list=[])
+        toc = time.time() - tic
+        print('Inference time:%fms' % (toc*1000))
         for bbox in bboxes[0]:
             cv2.rectangle(image, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 1)
 
