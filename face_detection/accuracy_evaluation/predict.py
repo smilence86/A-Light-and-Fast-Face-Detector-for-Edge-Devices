@@ -265,8 +265,8 @@ def run_prediction_folder():
 def run_prediction_camera():
     sys.path.append('..')
 
-    # from config_farm import configuration_10_560_25L_8scales_v1 as cfg
-    from config_farm import configuration_10_320_20L_5scales_v2 as cfg
+    from config_farm import configuration_10_560_25L_8scales_v1 as cfg
+    # from config_farm import configuration_10_320_20L_5scales_v2 as cfg
     from picamera.array import PiRGBArray
     from picamera import PiCamera
     import mxnet
@@ -277,10 +277,10 @@ def run_prediction_camera():
     rawCapture = PiRGBArray(camera, size=(640, 480))
     # time.sleep(0.1)
 
-    # symbol_file_path = '../symbol_farm/symbol_10_560_25L_8scales_v1_deploy.json'
-    # model_file_path = '../saved_model/configuration_10_560_25L_8scales_v1/train_10_560_25L_8scales_v1_iter_1400000.params'
-    symbol_file_path = '../symbol_farm/symbol_10_320_20L_5scales_v2_deploy.json'
-    model_file_path = '../saved_model/configuration_10_320_20L_5scales_v2/train_10_320_20L_5scales_v2_iter_1800000.params'
+    symbol_file_path = '../symbol_farm/symbol_10_560_25L_8scales_v1_deploy.json'
+    model_file_path = '../saved_model/configuration_10_560_25L_8scales_v1/train_10_560_25L_8scales_v1_iter_1400000.params'
+    # symbol_file_path = '../symbol_farm/symbol_10_320_20L_5scales_v2_deploy.json'
+    # model_file_path = '../saved_model/configuration_10_320_20L_5scales_v2/train_10_320_20L_5scales_v2_iter_1800000.params'
     my_predictor = Predict(mxnet=mxnet,
                            symbol_file_path=symbol_file_path,
                            model_file_path=model_file_path,
