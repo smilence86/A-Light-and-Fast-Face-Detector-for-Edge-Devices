@@ -272,9 +272,9 @@ def run_prediction_camera():
     import mxnet
 
     camera = PiCamera()
-    camera.resolution = (240, 320)
+    camera.resolution = (640, 480)
     camera.framerate = 24
-    rawCapture = PiRGBArray(camera, size=(240, 320))
+    rawCapture = PiRGBArray(camera, size=(640, 480))
     # time.sleep(0.1)
 
     # symbol_file_path = '../symbol_farm/symbol_10_560_25L_8scales_v1_deploy.json'
