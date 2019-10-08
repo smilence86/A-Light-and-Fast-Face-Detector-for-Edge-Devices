@@ -1,10 +1,27 @@
 # A Light and Fast Face Detector for Edge Devices
+<<<<<<< HEAD
+=======
+**This repo is updated frequently, keeping up with the latest code is highly recommended.**
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 ## Recent Update
 * `2019.07.25` This repos is first online. Face detection code and trained models are released.
 * `2019.08.15` This repos is formally released. Any advice and error reports are sincerely welcome.
 * `2019.08.22` face_detection: latency evaluation on TX2 is added.
 * `2019.08.25` face_detection: RetinaFace-MobileNet-0.25 is added for comparison (both accuracy and latency).
+<<<<<<< HEAD
+=======
+* `2019.09.09` LFFD is ported to NCNN ([link](https://github.com/SyGoing/LFFD-with-ncnn)) and MNN ([link](https://github.com/SyGoing/LFFD-MNN)) by [SyGoing](https://github.com/SyGoing), great thanks to SyGoing.
+* `2019.09.10` face_detection: **important bug fix:** vibration offset should be subtracted by shift in data iterator. This bug may result in lower accuracy, inaccurate bbox prediction and bbox vibration in test phase.
+We will upgrade v1 and v2 as soon as possible (should have higher accuracy and more stable).
+* `2019.09.17` face_detection: model v2 is upgraded! After fixing the bug, we have fine-tuned the old v2 model. The accuracy on 
+WIDER FACE is improved significantly! Please try new v2.
+* `2019.09.18` pedestrian_detection: preview version of model v1 for Caltech Pedestrian Dataset is released.
+* `2019.09.23` head_detection: model v1 for brainwash dataset is released.
+* `2019.10.02` license_plate_detection: model v1 for CCPD dataset is released. (**The accuracy is very high and the latency is very short!** Have a try.)
+* `2019.10.02` Currently, we have provided some application-oriented detectors. Subsequently, we will put most energy to 
+next generation framework for single-class detection. Any feedback is welcome.
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 ## Introduction
 This repo releases the source code of paper "[LFFD: A Light and Fast Face Detector for Edge Devices](https://arxiv.org/abs/1904.10633)". Our paper presents a light and fast face detector (**LFFD**) for edge devices.
@@ -145,10 +162,17 @@ year={2019}
 
 ## To Do List
 - [x] face detection
+<<<<<<< HEAD
 - [ ] pedestrian detection
 - [ ] head detection
 - [ ] vehicle detection
 - [ ] license plate detection
+=======
+- [x] pedestrian detection
+- [x] head detection
+- [ ] vehicle detection
+- [x] license plate detection
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 - [ ] PyTorch version
 
 ## Contact

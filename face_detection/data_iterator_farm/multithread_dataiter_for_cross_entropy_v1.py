@@ -314,8 +314,12 @@ class Multithread_DataIter_for_CrossEntropy:
                 # resize the original image
                 im = cv2.resize(im, None, fx=target_scale, fy=target_scale)
 
+<<<<<<< HEAD
                 # 将选中的bbox放在中间(带有一定的抖动)剪切原图
                 # crop the original image centered on the center of the selected bbox with vibration
+=======
+                # crop the original image centered on the center of the selected bbox with vibration (it can be regarded as an augmentation)
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
                 vibration_length = int(self.receptive_field_stride[scale_idx] / 2)
                 offset_x = random.randint(-vibration_length, vibration_length)
                 offset_y = random.randint(-vibration_length, vibration_length)
@@ -370,8 +374,13 @@ class Multithread_DataIter_for_CrossEntropy:
                     receptive_field_centers = numpy.array(
                         [self.receptive_field_center_start[i] + w * self.receptive_field_stride[i] for w in range(self.feature_map_size_list[i])])
 
+<<<<<<< HEAD
                     shift_x = (self.net_input_width / 2.0 - target_bbox[2] / 2) - target_bbox[0]
                     shift_y = (self.net_input_height / 2.0 - target_bbox[3] / 2) - target_bbox[1]
+=======
+                    shift_x = (self.net_input_width / 2.0 - target_bbox[2] / 2) - target_bbox[0] - offset_x
+                    shift_y = (self.net_input_height / 2.0 - target_bbox[3] / 2) - target_bbox[1] - offset_y
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
                     temp_label = numpy.zeros((self.num_output_channels, self.feature_map_size_list[i], self.feature_map_size_list[i]),
                                              dtype=numpy.float32)
                     temp_mask = numpy.zeros((self.num_output_channels, self.feature_map_size_list[i], self.feature_map_size_list[i]),
@@ -403,7 +412,10 @@ class Multithread_DataIter_for_CrossEntropy:
                         top_RF_center_index = max(0, math.ceil((temp_bbox_top_bound - self.receptive_field_center_start[i]) / self.receptive_field_stride[i]))
                         bottom_RF_center_index = min(self.feature_map_size_list[i] - 1, math.floor((temp_bbox_bottom_bound - self.receptive_field_center_start[i]) / self.receptive_field_stride[i]))
 
+<<<<<<< HEAD
                         # 目标太小，小于一个感受野中心都没有落在里面，直接忽略这个人脸，当做背景
+=======
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
                         # ignore the face with no RF centers inside
                         if right_RF_center_index < left_RF_center_index or bottom_RF_center_index < top_RF_center_index:
                             continue

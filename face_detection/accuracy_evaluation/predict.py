@@ -4,7 +4,11 @@ import os
 import numpy
 import cv2
 import time
+<<<<<<< HEAD
 import math
+=======
+
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 # empty data batch class for dynamical properties
 class DataBatch:
@@ -229,7 +233,11 @@ def run_prediction_folder():
     from config_farm import configuration_10_560_25L_8scales_v1 as cfg
     import mxnet
 
+<<<<<<< HEAD
     debug_folder = '/home/pi/Pictures/' # fill the folder that contains images
+=======
+    debug_folder = '' # fill the folder that contains images
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
     file_name_list = [file_name for file_name in os.listdir(debug_folder) if file_name.lower().endswith('jpg')]
 
     symbol_file_path = '../symbol_farm/symbol_10_560_25L_8scales_v1_deploy.json'
@@ -237,7 +245,11 @@ def run_prediction_folder():
     my_predictor = Predict(mxnet=mxnet,
                            symbol_file_path=symbol_file_path,
                            model_file_path=model_file_path,
+<<<<<<< HEAD
                            ctx=mxnet.cpu(0),
+=======
+                           ctx=mxnet.gpu(0),
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
                            receptive_field_list=cfg.param_receptive_field_list,
                            receptive_field_stride=cfg.param_receptive_field_stride,
                            bbox_small_list=cfg.param_bbox_small_list,
@@ -249,11 +261,16 @@ def run_prediction_folder():
         im = cv2.imread(os.path.join(debug_folder, file_name))
 
         bboxes = my_predictor.predict(im, resize_scale=1, score_threshold=0.3, top_k=10000, NMS_threshold=0.3, NMS_flag=True, skip_scale_branch_list=[])
+<<<<<<< HEAD
         print(bboxes[0])
         for bbox in bboxes[0]:
             print((bbox))
             cv2.rectangle(im, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 1)
             #cv2.rectangle(im, (470, 77), (508, 127), (0, 255, 0), 1)
+=======
+        for bbox in bboxes:
+            cv2.rectangle(im, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
         if max(im.shape[:2]) > 1600:
             scale = 1600/max(im.shape[:2])
@@ -262,6 +279,7 @@ def run_prediction_folder():
         cv2.waitKey()
         # cv2.imwrite(os.path.join(debug_folder, file_name.replace('.jpg','_result.jpg')), im)
 
+<<<<<<< HEAD
 def run_prediction_camera():
     sys.path.append('..')
 
@@ -319,3 +337,8 @@ def run_prediction_camera():
 if __name__ == '__main__':
     #run_prediction_folder()
     run_prediction_camera()
+=======
+
+if __name__ == '__main__':
+    run_prediction_folder()
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2

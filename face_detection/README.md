@@ -7,6 +7,14 @@ been presented in repo README.md.
 * `2019.08.22` latency evaluation on TX2 is added.
 * `2019.08.25` RetinaFace-MobileNet-0.25 is added for comparison (both accuracy and latency).
 * `2019.09.03` a better augmentation procedure replaces the old one in dataiter.
+<<<<<<< HEAD
+=======
+* `2019.09.09` LFFD is ported to NCNN ([link](https://github.com/SyGoing/LFFD-with-ncnn)) and MNN ([link](https://github.com/SyGoing/LFFD-MNN)) by [SyGoing](https://github.com/SyGoing), great thanks to SyGoing.
+* `2019.09.10` **important bug fix:** vibration offset should be subtracted by shift in data iterator. This bug may result in lower accuracy, inaccurate bbox prediction and bbox vibration in test phase.
+We will upgrade v1 and v2 as soon as possible (should have higher accuracy and more stable).
+* `2019.09.17` model v2 is upgraded! After fixing the bug, we have fine-tuned the old v2 model. The accuracy on 
+WIDER FACE is improved significantly! Please try new v2 (`./saved_model/configuration_10_320_20L_5scales_v2/train_10_320_20L_5scales_v2_iter_1000000.params`).
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 ### Brief Introduction to Model Version
 * v1 - refer to the paper for details
@@ -22,7 +30,11 @@ Model Version|Easy Set|Medium Set|Hard Set
 ------|--------|----------|--------
 RetinaFace-mnet|0.896|0.871|0.681
 v1|0.910|0.881|0.780
+<<<<<<< HEAD
 v2|0.837|0.835|0.729
+=======
+v2|~~0.837~~ 0.875|~~0.835~~ 0.863|~~0.729~~ 0.754
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 > * due to giving up detecting large faces, the accuracy of v2 decreases obviously compared to v1.
 In fact, v2 is enough for practical use.
@@ -35,7 +47,11 @@ Model Version|Disc ROC curves score
 ------|--------
 RetinaFace-mnet|0.960
 v1|0.973
+<<<<<<< HEAD
 v2|0.972
+=======
+v2|~~0.972~~ 0.971
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 
 ### Inference Latency

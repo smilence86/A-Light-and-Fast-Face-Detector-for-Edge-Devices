@@ -370,8 +370,13 @@ class Multithread_DataIter_for_CrossEntropy:
                     receptive_field_centers = numpy.array(
                         [self.receptive_field_center_start[i] + w * self.receptive_field_stride[i] for w in range(self.feature_map_size_list[i])])
 
+<<<<<<< HEAD
                     shift_x = (self.net_input_width / 2.0 - target_bbox[2] / 2) - target_bbox[0]
                     shift_y = (self.net_input_height / 2.0 - target_bbox[3] / 2) - target_bbox[1]
+=======
+                    shift_x = (self.net_input_width / 2.0 - target_bbox[2] / 2) - target_bbox[0] - offset_x
+                    shift_y = (self.net_input_height / 2.0 - target_bbox[3] / 2) - target_bbox[1] - offset_y
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
                     temp_label = numpy.zeros((self.num_output_channels, self.feature_map_size_list[i], self.feature_map_size_list[i]),
                                              dtype=numpy.float32)
                     temp_mask = numpy.zeros((self.num_output_channels, self.feature_map_size_list[i], self.feature_map_size_list[i]),

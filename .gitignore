@@ -110,5 +110,9 @@ venv.bak/
 dmypy.json
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 .idea/
 face_detection/log/
+=======
+.idea/
+>>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
