@@ -35,11 +35,7 @@ param_valset_pickle_file_path = ''
 '''
 
 # batchsize for training
-<<<<<<< HEAD
-param_train_batch_size = 16
-=======
 param_train_batch_size = 32
->>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 
 # the ratio of neg image in a batch
 param_neg_image_ratio = 0.1
@@ -96,11 +92,7 @@ param_hnm_ratio = 5
 # init learning rate
 param_learning_rate = 0.1
 # weight decay
-<<<<<<< HEAD
-param_weight_decay = 0.
-=======
 param_weight_decay = 0.00001
->>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 # momentum
 param_momentum = 0.9
 

@@ -92,11 +92,7 @@ param_hnm_ratio = 5
 # init learning rate
 param_learning_rate = 0.1
 # weight decay
-<<<<<<< HEAD
-param_weight_decay = 0.
-=======
 param_weight_decay = 0.00001
->>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
 # momentum
 param_momentum = 0.9
 
@@ -206,11 +202,7 @@ def run():
     logging.info('Get net symbol successfully.')
 
     # -----------------------------------------------------------------------------------------------
-<<<<<<< HEAD
-    # 构造dataiter
-=======
     # init dataiter
->>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
     from data_provider_farm.pickle_provider import PickleProvider
     from data_iterator_farm.multithread_dataiter_for_cross_entropy_v2 import Multithread_DataIter_for_CrossEntropy as DataIter
 
@@ -286,11 +278,7 @@ def run():
 
         )
     # ---------------------------------------------------------------------------------------------
-<<<<<<< HEAD
-    # 构造metric
-=======
     # init metric
->>>>>>> 5967029c236460c9e6413912f31cf06851997ed2
     from metric_farm.metric_default import Metric
 
     train_metric = Metric(param_num_output_scales)
